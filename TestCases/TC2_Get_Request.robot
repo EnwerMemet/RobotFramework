@@ -19,7 +19,6 @@ Verify a Single Post
     ${json_body}=    To JSON    ${response.text}
     Log    JSON Body: ${json_body}
     
-    # Corrected line: Use bracket notation to access dictionary keys
     Should Contain    ${json_body}[title]    repellat
     Should Be Equal As Strings    ${json_body}[userId]    1
 
@@ -39,6 +38,5 @@ Create a New Post
     
     ${body}=    To JSON    ${response.text}
     
-    # Corrected lines: Use bracket notation to access dictionary keys
     Should Be Equal As Strings    ${body}[id]    101
     Should Be Equal As Strings    ${body}[title]    foo
