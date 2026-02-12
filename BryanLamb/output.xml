@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.12.8 on darwin)" generated="2026-02-12T21:52:25.921006" rpa="false" schemaversion="5">
+<suite id="s1" name="Abn Mortgage" source="/Users/enwer/Desktop/TestAutomation/RobotFramework/BryanLamb/abn_mortgage.robot">
+<test id="s1-t1" name="Calculate Mortgage Scenario" line="14">
+<kw name="Open Browser To Calculator" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-02-12T21:52:26.027022" level="INFO">Opening browser 'chrome' to base url 'https://www.abnamro.nl/en/personal/mortgages/mortgage-calculator/index.html'.</msg>
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-02-12T21:52:26.026934" elapsed="2.784971"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-02-12T21:52:28.813014" elapsed="0.480076"/>
+</kw>
+<kw name="Set Selenium Speed" owner="SeleniumLibrary">
+<arg>0.5 seconds</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" start="2026-02-12T21:52:29.293215" elapsed="0.000195"/>
+</kw>
+<status status="PASS" start="2026-02-12T21:52:26.026688" elapsed="3.266790"/>
+</kw>
+<kw name="Accept Cookies">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${COOKIE_ACCEPT}</arg>
+<arg>15s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-12T21:52:29.293827" elapsed="1.778250"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-02-12T21:52:31.073524" level="INFO">Clicking element 'id:onetrust-accept-btn-handler'.</msg>
+<arg>${COOKIE_ACCEPT}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-12T21:52:31.072827" elapsed="1.089601"/>
+</kw>
+<kw name="Wait Until Element Is Not Visible" owner="SeleniumLibrary">
+<arg>${COOKIE_ACCEPT}</arg>
+<doc>Waits until the element ``locator`` is not visible.</doc>
+<status status="PASS" start="2026-02-12T21:52:32.163013" elapsed="1.022037"/>
+</kw>
+<status status="PASS" start="2026-02-12T21:52:29.293678" elapsed="3.891758"/>
+</kw>
+<kw name="Fill Income Data">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<msg time="2026-02-12T21:52:38.780833" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-3.png"&gt;&lt;img src="selenium-screenshot-3.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2026-02-12T21:52:38.781220" level="FAIL">Element 'css:input[name="income_1"]' not visible after 5 seconds.</msg>
+<arg>${INCOME_FIELD}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="FAIL" start="2026-02-12T21:52:33.186739" elapsed="5.600386">Element 'css:input[name="income_1"]' not visible after 5 seconds.</status>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<arg>${INCOME_FIELD}</arg>
+<arg>${amount}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" start="2026-02-12T21:52:38.787516" elapsed="0.000053"/>
+</kw>
+<arg>65000</arg>
+<status status="FAIL" start="2026-02-12T21:52:33.186061" elapsed="5.601749">Element 'css:input[name="income_1"]' not visible after 5 seconds.</status>
+</kw>
+<kw name="Trigger Calculation">
+<status status="NOT RUN" start="2026-02-12T21:52:38.788184" elapsed="0.000081"/>
+</kw>
+<kw name="Verify Results Appear">
+<status status="NOT RUN" start="2026-02-12T21:52:38.788635" elapsed="0.000035"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2026-02-12T21:52:38.789287" elapsed="0.573918"/>
+</kw>
+<status status="FAIL" start="2026-02-12T21:52:26.026438" elapsed="13.337010">Element 'css:input[name="income_1"]' not visible after 5 seconds.</status>
+</test>
+<doc>A script to calculate maximum mortgage on the ABN AMRO site.</doc>
+<status status="FAIL" start="2026-02-12T21:52:25.921452" elapsed="13.442671"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Abn Mortgage">Abn Mortgage</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
