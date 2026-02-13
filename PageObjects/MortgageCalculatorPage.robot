@@ -9,6 +9,7 @@ ${BROWSER}           Chrome
 ${SCREENSHOT_DIR}    ${CURDIR}${/}Screenshots
 ${COOKIE_ACCEPT}     id:onetrust-accept-btn-handler
 ${IFRAME}            id:tcm-216762-iframe
+${RADIO_ALONE}       id:is-joint-false
 ${INCOME_FIELD}      id:pv_id_5
 ${CALCULATE_BTN}     xpath://span[contains(., 'Continue calculation')]
 ${MAX_MORTGAGE}      xpath://span[contains(@class, 'emc-sr-only') and contains(., 'euro')]
@@ -16,22 +17,29 @@ ${MONTHLY_PAYMENT}   xpath://dt[contains(., 'Gross monthly payment')]/following-
 ${ERROR_MESSAGE}     xpath://div[@data-p='error']
 
 *** Keywords ***
+
 Open Calculator Page
     Create Directory    ${SCREENSHOT_DIR}
+    ${start_time}=    Get Current Date    result_format=epoch
     Open Browser        ${URL}    ${BROWSER}
+    ${end_time}=    Get Current Date    result_format=epoch
+    Set Test Variable    ${START_TIME}    ${start_time}
+    Set Test Variable    ${LOAD_TIME}    ${end_time}
     Maximize Browser Window
     Set Selenium Speed  0.5 seconds
     Accept Cookies
+    Select Borrowing Alone
 
 Accept Cookies
     Wait Until Element Is Visible    ${COOKIE_ACCEPT}    15s
     Click Element                    ${COOKIE_ACCEPT}
     Select Frame                     ${IFRAME}
 
-Custom Teardown
-    Run Keyword If Test Failed    Capture Page Screenshot    ${SCREENSHOT_DIR}/FAIL_${TEST_NAME}.png
-    Close Browser
-
+Select Borrowing Alone
+    [Documentation]    Selects the 'Alone' option.
+    Wait Until Element Is Visible    ${RADIO_ALONE}    10s
+    Sleep    1
+    Execute JavaScript    document.querySelector('[id="is-joint-false"]').click()
 Fill Income
     [Arguments]    ${income}
     Wait Until Element Is Visible    ${INCOME_FIELD}    30s
@@ -86,3 +94,7 @@ Test Income Value
     ${max_mortgage}=    Get Maximum Mortgage Amount
     Should Not Be Empty    ${max_mortgage}
     Log To Console    Tested income: ${income}, Max mortgage: ${max_mortgage}
+
+Custom Teardown
+    Run Keyword If Test Failed    Capture Page Screenshot    ${SCREENSHOT_DIR}/FAIL_${TEST_NAME}.png
+    Close Browser

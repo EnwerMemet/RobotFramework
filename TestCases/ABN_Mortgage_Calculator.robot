@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation     Full ABN AMRO Mortgage Calculator Test Suite
+Documentation     Full ABN AMRO Mortgage Calculator Test Suite for Single person
 Library           SeleniumLibrary
 Library           Collections
 Library           DateTime
@@ -14,9 +14,7 @@ TC-001 UI Elements Test
     [Documentation]    Technique: Smoke Testing. 
     ...                Verifies UI element visibility and measures page load performance.
     [Tags]    ui    smoke
-    ${start_time}=    Get Current Date    result_format=epoch
-    ${end_time}=    Get Current Date    result_format=epoch
-    ${load_time}=    Evaluate    ${end_time} - ${start_time}
+    ${load_time}=    Evaluate    ${LOAD_TIME} - ${START_TIME}
     Log To Console    Page load time: ${load_time} seconds
     Element Should Be Visible    ${INCOME_FIELD}
     Element Should Be Visible    ${CALCULATE_BTN}
