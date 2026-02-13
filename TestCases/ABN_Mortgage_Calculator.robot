@@ -3,168 +3,140 @@ Documentation     ABN AMRO Mortgage Calculator Test Suite
 Library           SeleniumLibrary
 Library           Collections
 Library           DateTime
-
-*** Variables ***
-${URL}               https://www.abnamro.nl/en/personal/mortgages/mortgage-calculator/index.html
-${BROWSER}           Chrome
-${SCREENSHOT_DIR}    ${CURDIR}${/}Screenshots
-
-# Selectors - Updated with actual selectors
-${COOKIE_ACCEPT}     id:onetrust-accept-btn-handler
-${IFRAME}            id:tcm-216762-iframe
-${INCOME_FIELD}      id:pv_id_5
-${CALCULATE_BTN}     xpath://span[contains(., 'Continue calculation')]
-${MAX_MORTGAGE}      xpath://span[contains(@class, 'emc-sr-only') and contains(., 'euro')]
-${MONTHLY_PAYMENT}   xpath://dd[@role='listitem']//span[contains(@class, 'emc-sr-only')]
+Library           AllureLibrary
+Resource          ../PageObjects/MortgageCalculatorPage.robot
 
 *** Test Cases ***
 TC-001 Accept Cookie Consent Banner
     [Documentation]    Accept the cookie consent banner to proceed with tests
+    [Tags]    smoke    cookie
     Open Browser To Calculator
     Accept Cookies
-    Capture Page Screenshot    ${SCREENSHOT_DIR}/TC001_cookies_accepted.png
+    Take Screenshot    TC001_cookies_accepted.png
     [Teardown]    Close Browser
 
 TC-002 Enter Gross Annual Income
     [Documentation]    Enter a valid income amount
+    [Tags]    functional    input
     Open Browser To Calculator
     Accept Cookies
-    Wait Until Element Is Visible    ${INCOME_FIELD}
-    Input Text    ${INCOME_FIELD}    65000
-    Capture Page Screenshot    ${SCREENSHOT_DIR}/002_income_entered.png
+    Fill Income    65000
+    Take Screenshot    TC002_income_entered.png
     [Teardown]    Close Browser
 
-TC-003 Click Calculate Button
-    [Documentation]    Click the calculate button and verify action
-    Open Browser To Calculator
-    Accept Cookies
-    Input Text    ${INCOME_FIELD}    65000
-    Sleep    3
-    Capture Page Screenshot    ${SCREENSHOT_DIR}/003_calculated.png
-    [Teardown]    Close Browser
-
-TC-004 Verify Maximum Mortgage Amount Displayed
+TC-003 Verify Maximum Mortgage Amount Displayed
     [Documentation]    Verify the maximum mortgage amount is shown after calculation
     Open Browser To Calculator
     Accept Cookies
-    Fill Income And Calculate    65000
-    Wait Until Element Is Visible    ${MAX_MORTGAGE}
-    ${max_mortgage}=    Get Text    ${MAX_MORTGAGE}
+    Fill Income    65000
+    ${max_mortgage}=    Get Maximum Mortgage Amount
     Log To Console    Maximum Mortgage: ${max_mortgage}
     Should Not Be Empty    ${max_mortgage}
-    Capture Page Screenshot    ${SCREENSHOT_DIR}/004_max_mortgage.png
+    Take Screenshot    TC003_max_mortgage.png
     [Teardown]    Close Browser
 
-TC-005 Verify Monthly Payment Amount Displayed
+TC-004 Verify Monthly Payment Amount Displayed
     [Documentation]    Verify the monthly payment amount is shown after calculation
     Open Browser To Calculator
     Accept Cookies
-    Fill Income And Calculate    65000
-    Wait Until Element Is Visible    ${MONTHLY_PAYMENT}
-    ${monthly}=    Get Text    ${MONTHLY_PAYMENT}
+    Fill Income    65000
+    ${monthly}=    Get Monthly Payment Amount
     Log To Console    Monthly Payment: ${monthly}
     Should Not Be Empty    ${monthly}
-    Capture Page Screenshot    ${SCREENSHOT_DIR}/005_monthly_payment.png
+    Take Screenshot    TC004_monthly_payment.png
     [Teardown]    Close Browser
 
-TC-006 Clear Income Field And Recalculate
+TC-005 Clear Income Field And Recalculate
     [Documentation]    Clear the income field and enter a new value
     Open Browser To Calculator
     Accept Cookies
-    Input Text    ${INCOME_FIELD}    65000
-    Clear Element Text    ${INCOME_FIELD}
-    Input Text    ${INCOME_FIELD}    80000
-    Sleep    3
-    Capture Page Screenshot    ${SCREENSHOT_DIR}/006_recalculated.png
+    Fill Income    65000
+    Clear Income Field
+    Fill Income    80000
+    Take Screenshot    TC005_recalculated.png
     [Teardown]    Close Browser
 
-TC-007 Enter Different Income Amounts
+TC-006 Enter Different Income Amounts
     [Documentation]    Test calculation with various income amounts
     Open Browser To Calculator
     Accept Cookies
     FOR    ${income}    IN    10000    50000    100000
-        Clear Element Text    ${INCOME_FIELD}
-        Input Text    ${INCOME_FIELD}    ${income}
-        Sleep    3
+        Clear Income Field
+        Fill Income    ${income}
         Log To Console    Tested income: ${income}
     END
-    Capture Page Screenshot    ${SCREENSHOT_DIR}/007_different_incomes.png
+    Take Screenshot    TC006_different_incomes.png
     [Teardown]    Close Browser
 
-TC-008 Enter Minimum Valid Income
+TC-007 Enter Minimum Valid Income
     [Documentation]    Test with minimum income value
     Open Browser To Calculator
     Accept Cookies
-    Fill Income And Calculate    0
-    Capture Page Screenshot    ${SCREENSHOT_DIR}/008_min_income.png
+    Fill Income    0
+    Take Screenshot    TC007_min_income.png
     [Teardown]    Close Browser
 
-TC-009 Enter Maximum Income Value
+TC-008 Enter Maximum Income Value
     [Documentation]    Test with very high income value
     Open Browser To Calculator
     Accept Cookies
-    Fill Income And Calculate    999999
-    Capture Page Screenshot    ${SCREENSHOT_DIR}/009_max_income.png
+    Fill Income    999999
+    Take Screenshot    TC008_max_income.png
     [Teardown]    Close Browser
 
-TC-010 Verify Calculation Formula
+TC-009 Verify Calculation Formula
     [Documentation]    Verify the mortgage calculation follows expected formula
     Open Browser To Calculator
     Accept Cookies
-    Fill Income And Calculate    65000
-    Wait Until Element Is Visible    ${MAX_MORTGAGE}
-    ${max_mortgage_text}=    Get Text    ${MAX_MORTGAGE}
-    ${monthly_text}=    Get Text    ${MONTHLY_PAYMENT}
+    Fill Income    65000
+    ${max_mortgage_text}=    Get Maximum Mortgage Amount
+    ${monthly_text}=    Get Monthly Payment Amount
     Log To Console    Max Mortgage: ${max_mortgage_text}, Monthly: ${monthly_text}
-    Capture Page Screenshot    ${SCREENSHOT_DIR}/010_formula_verification.png
+    Take Screenshot    TC009_formula_verification.png
     [Teardown]    Close Browser
 
-TC-011 Enter Non-Numeric Characters
+TC-010 Enter Non-Numeric Characters
     [Documentation]    Test input validation with non-numeric characters
     Open Browser To Calculator
     Accept Cookies
-    Input Text    ${INCOME_FIELD}    ABC
-    Sleep    3
-    Capture Page Screenshot    ${SCREENSHOT_DIR}/011_non_numeric.png
+    Fill Income    ABC
+    Take Screenshot    TC010_non_numeric.png
     [Teardown]    Close Browser
 
-TC-012 Enter Negative Income Value
+TC-011 Enter Negative Income Value
     [Documentation]    Test input validation with negative income
     Open Browser To Calculator
     Accept Cookies
-    Input Text    ${INCOME_FIELD}    -5000
-    Sleep    3
-    Capture Page Screenshot    ${SCREENSHOT_DIR}/012_negative.png
+    Fill Income    -5000
+    Take Screenshot    TC011_negative.png
     [Teardown]    Close Browser
 
-TC-013 Enter Very Large Income Value
+TC-012 Enter Very Large Income Value
     [Documentation]    Test input validation with extremely large income
     Open Browser To Calculator
     Accept Cookies
-    Input Text    ${INCOME_FIELD}    999999999
-    Sleep    3
-    Capture Page Screenshot    ${SCREENSHOT_DIR}/013_very_large.png
+    Fill Income    999999999
+    Take Screenshot    TC012_very_large.png
     [Teardown]    Close Browser
 
-TC-014 Leave Income Field Empty
+TC-013 Leave Income Field Empty
     [Documentation]    Test validation when income field is empty
     Open Browser To Calculator
     Accept Cookies
     Wait Until Element Is Visible    ${INCOME_FIELD}
     Sleep    3
-    Capture Page Screenshot    ${SCREENSHOT_DIR}/014_empty.png
+    Take Screenshot    TC013_empty.png
     [Teardown]    Close Browser
 
-TC-015 Enter Decimal Values
+TC-014 Enter Decimal Values
     [Documentation]    Test with decimal income values
     Open Browser To Calculator
     Accept Cookies
-    Input Text    ${INCOME_FIELD}    65000.50
-    Sleep    3
-    Capture Page Screenshot    ${SCREENSHOT_DIR}/015_decimal.png
+    Fill Income    65000.50
+    Take Screenshot    TC014_decimal.png
     [Teardown]    Close Browser
 
-TC-016 Verify Page Load Time
+TC-015 Verify Page Load Time
     [Documentation]    Verify the page loads within acceptable time
     ${start_time}=    Get Current Date    result_format=epoch
     Open Browser To Calculator
@@ -173,70 +145,47 @@ TC-016 Verify Page Load Time
     ${load_time}=    Evaluate    ${end_time} - ${start_time}
     Log To Console    Page load time: ${load_time} seconds
     Should Be True    ${load_time} < 10
-    Capture Page Screenshot    ${SCREENSHOT_DIR}/016_page_load.png
+    Take Screenshot    TC015_page_load.png
     [Teardown]    Close Browser
 
-TC-017 Verify All Input Fields Are Visible
+TC-016 Verify All Input Fields Are Visible
     [Documentation]    Verify all required input fields are visible
     Open Browser To Calculator
     Accept Cookies
     Wait Until Element Is Visible    ${INCOME_FIELD}
     Element Should Be Visible    ${INCOME_FIELD}
     Element Should Be Visible    ${CALCULATE_BTN}
-    Capture Page Screenshot    ${SCREENSHOT_DIR}/017_all_fields_visible.png
+    Take Screenshot    TC016_all_fields_visible.png
     [Teardown]    Close Browser
 
-TC-018 Verify Calculate Button Is Enabled
+TC-017 Verify Calculate Button Is Enabled
     [Documentation]    Verify the Calculate button is enabled
     Open Browser To Calculator
     Accept Cookies
     Wait Until Element Is Visible    ${CALCULATE_BTN}
     Element Should Be Enabled    ${CALCULATE_BTN}
-    Capture Page Screenshot    ${SCREENSHOT_DIR}/018_button_enabled.png
+    Take Screenshot    TC017_button_enabled.png
     [Teardown]    Close Browser
 
-TC-019 Responsive Design Test
+TC-018 Responsive Design Test
     [Documentation]    Test responsive design on different viewport sizes
     Open Browser To Calculator
     Accept Cookies
     Set Window Size    375    667
-    Capture Page Screenshot    ${SCREENSHOT_DIR}/019_mobile.png
+    Take Screenshot    TC018_mobile.png
     Set Window Size    768    1024
-    Capture Page Screenshot    ${SCREENSHOT_DIR}/019_tablet.png
+    Take Screenshot    TC018_tablet.png
     Set Window Size    1920    1080
-    Capture Page Screenshot    ${SCREENSHOT_DIR}/019_desktop.png
+    Take Screenshot    TC018_desktop.png
     [Teardown]    Close Browser
 
-TC-020 Screenshot Capture At Each Step
+TC-019 Screenshot Capture At Each Step
     [Documentation]    Capture screenshots at each step of the workflow
     Open Browser To Calculator
-    Capture Page Screenshot    ${SCREENSHOT_DIR}/020_step1_initial.png
+    Take Screenshot    TC019_step1_initial.png
     Accept Cookies
-    Capture Page Screenshot    ${SCREENSHOT_DIR}/020_step2_cookies.png
-    Input Text    ${INCOME_FIELD}    65000
-    Capture Page Screenshot    ${SCREENSHOT_DIR}/020_step3_income.png
-    Sleep    3
-    Capture Page Screenshot    ${SCREENSHOT_DIR}/020_step4_result.png
+    Take Screenshot    TC019_step2_cookies.png
+    Fill Income    65000
+    Take Screenshot    TC019_step3_income.png
+    Take Screenshot    TC019_step4_result.png
     [Teardown]    Close Browser
-
-*** Keywords ***
-Open Browser To Calculator
-    Open Browser    ${URL}    ${BROWSER}
-    Maximize Browser Window
-    Set Selenium Speed    0.5 seconds
-
-Accept Cookies
-    Wait Until Element Is Visible    ${COOKIE_ACCEPT}    15s
-    Click Element    ${COOKIE_ACCEPT}
-    Wait Until Element Is Not Visible    ${COOKIE_ACCEPT}
-    Select Frame    ${IFRAME}
-
-Fill Income And Calculate
-    [Arguments]    ${income}
-    Wait Until Element Is Visible    ${INCOME_FIELD}    30s
-    Sleep    1
-    Input Text    ${INCOME_FIELD}    ${income}
-    Sleep    3
-
-Wait For Loading
-    Sleep    2
