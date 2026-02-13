@@ -1,0 +1,27 @@
+# Screenshots
+PageObjects/Screenshots/
+TestCases/Screenshots/
+
+# Allure reports
+TestCases/allure-results/
+TestCases/allure-report/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Robot Framework
+log.html
+report.html
+output.xml
+xunit.xml
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
