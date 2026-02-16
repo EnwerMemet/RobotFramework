@@ -20,9 +20,9 @@ ${ERROR_MESSAGE}     xpath://div[@data-p='error']
 
 Open Calculator Page
     Create Directory    ${SCREENSHOT_DIR}
-    ${start_time}=    Get Time    epoch
+    ${start_time}=    Get Current Date    result_format=epoch
     Open Browser        ${URL}    ${BROWSER}
-    ${end_time}=    Get Time    epoch
+    ${end_time}=    Get Current Date    result_format=epoch
     Set Test Variable    ${START_TIME}    ${start_time}
     Set Test Variable    ${LOAD_TIME}    ${end_time}
     Maximize Browser Window
