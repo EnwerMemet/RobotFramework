@@ -30,3 +30,4 @@ Thumbs.db
 echo ".DS_Store" >> .gitignore
 echo "**/Results/" >> .gitignore
 echo "**/*.png" >> .gitignore
+Tests/SeleniumLibrary
