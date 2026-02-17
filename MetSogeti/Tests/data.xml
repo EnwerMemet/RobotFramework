@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<users>
+    <user key="1">
+        <type>Parrot</type>
+        <name>Tweety</name>
+    </user>
+    <user key="2">
+        <type>Black Dog</type>
+        <name>Mr.Snuffles</name>
+    </user>
+    <user key="3">
+        <type>Human</type>
+        <name>Rudy</name>
+    </user>
+</users>
