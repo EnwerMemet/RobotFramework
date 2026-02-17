@@ -1,27 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <users>
-    <user id="1">
-        <firstname>Bryan</firstname>
-        <lastname>Sogeti</lastname>
-        <email>bryan.sogeti@example.com</email>
-        <role>Admin</role>
+    <user key="1">
+        <type>Parrot</type>
+        <name>Tweety</name>
     </user>
-    <user id="2">
-        <firstname>Enwer</firstname>
-        <lastname>Memet</lastname>
-        <email>enwer.m@example.com</email>
-        <role>Developer</role>
+    <user key="2">
+        <type>Black Dog</type>
+        <name>Mr.Snuffles</name>
     </user>
-    <user id="3">
-        <firstname>Sarah</firstname>
-        <lastname>Connor</lastname>
-        <email>s.connor@example.com</email>
-        <role>Tester</role>
-    </user>
-    <user id="4">
-        <firstname>John</firstname>
-        <lastname>Doe</lastname>
-        <email>j.doe@example.com</email>
-        <role>User</role>
+    <user key="3">
+        <type>Human</type>
+        <name>Rudy</name>
     </user>
 </users>
