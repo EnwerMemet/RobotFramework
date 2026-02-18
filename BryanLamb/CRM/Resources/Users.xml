@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestData>
+    <User>
+        <Email>tweety@parrot.com</Email>
+        <FirstName>Tweety</FirstName>
+        <LastName>Bird</LastName>
+        <City>Amsterdam</City>
+        <State>AK</State>
+        <Gender>male</Gender>
+    </User>
+    <User>
+        <Email>bugs@bunny.com</Email>
+        <FirstName>Bugs</FirstName>
+        <LastName>Bunny</LastName>
+        <City>Rotterdam</City>
+        <State>AL</State>
+        <Gender>male</Gender>
+    </User>
+    <User>
+        <Email>lola@bunny.com</Email>
+        <FirstName>Lola</FirstName>
+        <LastName>Bunny</LastName>
+        <City>Utrecht</City>
+        <State>AZ</State>
+        <Gender>female</Gender>
+    </User>
+    <User>
+        <Email>daffy@duck.com</Email>
+        <FirstName>Daffy</FirstName>
+        <LastName>Duck</LastName>
+        <City>Haarlem</City>
+        <State>AR</State>
+        <Gender>male</Gender>
+    </User>
+</TestData>
