@@ -1,5 +1,8 @@
 *** Settings ***
-Library     SeleniumLibrary
-Resource    Locators.robot
-Resource    Common.robot
-Resource    PO/AdminPage.robot
+Library             SeleniumLibrary        
+Library             OperatingSystem
+Library             XML
+Library             Collections
+Resource            Locators.robot
+Resource            Common.robot
+Resource            PO/AdminPage.robot
