@@ -1,8 +1,13 @@
 *** Settings ***
 Documentation     Login Page - Page Object
-Resource          ../../Resources/Main.robot
+Resource          ../Main.robot
 
 *** Keywords ***
+Login With Credentials
+    [Arguments]    ${user_email}    ${user_password}
+    Enter Login Credentials    ${user_email}    ${user_password}
+    Submit Login
+
 Enter Login Credentials
     [Arguments]    ${email}    ${password}
     Click Link         ${NAV_SIGN_IN}

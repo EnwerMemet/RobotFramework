@@ -26,8 +26,3 @@ Incognito Mode
     ${prefs}=    Create Dictionary    credentials_enable_service=${False}    password_manager_enabled=${False}
     Call Method    ${options}    add_experimental_option    prefs    ${prefs}
     Open Browser       ${URL}    chrome    options=${options}
-
-Login With Credentials
-    [Arguments]    ${user_email}    ${user_password}
-    Enter Login Credentials    ${user_email}    ${user_password}
-    Submit Login
