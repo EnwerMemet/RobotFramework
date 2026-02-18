@@ -3,7 +3,7 @@ Library           XML   user_lxml= ${True}
 
 *** Test Cases ***
 Testcase1a Get Parrot with the name Tweety
-    ${xml}=    Parse XML    source=data.xml
+    ${xml}=    Parse XML    source=//data.xml
     ${name}=    Get Element Text    ${xml}    user[type='Parrot']/name
     Should Be Equal As Strings    ${name}     Tweety
 Testcase1b Get Black Dog with the name Mr.Snuffles

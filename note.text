@@ -1,0 +1,2 @@
+Run all Tests
+robot -A all_tests.args Tests/
