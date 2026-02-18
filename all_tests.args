@@ -1,0 +1,11 @@
+# 1. Where to put the combined results
+--outputdir All_Results
+
+# 2. Add some visual organization to the logs
+--loglevel INFO
+--name Global_Project_Suite
+
+# 3. List all test directories
+ABNAMRO_Mortage/Tests
+BryanLamb/CRM/Tests
+SogetiRF/Tests
