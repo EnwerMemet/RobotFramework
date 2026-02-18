@@ -7,7 +7,7 @@ Given the user is on the login page
     No Operation
 
 When the user logs in with valid credentials
-    Login With Credentials    ${EMAIL}    ${PASSWORD}
+    LoginPage.Login With Credentials    ${EMAIL}    ${PASSWORD}
 
 Then the dashboard should be visible
     Page Should Contain    Our Happy Customers

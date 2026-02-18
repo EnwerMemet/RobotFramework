@@ -1,8 +1,8 @@
 *** Settings ***
 Documentation     Admin Page - Page Object
 Library           SeleniumLibrary
-Resource          ../../Resources/Common.robot
-Resource          ../../Resources/Locators.robot
+Library           XML
+Resource          ../Main.robot
 
 *** Keywords ***
 Add New Customer
