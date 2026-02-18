@@ -1,9 +1,8 @@
 *** Settings ***
-Documentation     RF-Levle 1 - Section 5
+Documentation     Admin Page - Page Object
 Library           SeleniumLibrary
 Resource          ../../Resources/Common.robot
 Resource          ../../Resources/Locators.robot
-
 
 *** Keywords ***
 Add New Customer
@@ -20,3 +19,16 @@ Add New Customer
     Click Button                     ${BTN_SUBMIT}
     Wait Until Page Contains         ${MSG_CONFIRMATION}    10s
 
+Import And Add Customers From Xml
+    [Arguments]    ${path}
+    ${xml_obj}=    Parse XML    ${path}
+    @{users_list}=    Get Elements    ${xml_obj}    User
+    FOR    ${user}    IN    @{users_list}
+        ${mail}=      Get Element Text    ${user}    Email
+        ${first}=     Get Element Text    ${user}    FirstName
+        ${last}=      Get Element Text    ${user}    LastName
+        ${city}=      Get Element Text    ${user}    City
+        ${state}=     Get Element Text    ${user}    State
+        ${gender}=    Get Element Text    ${user}    Gender
+        Add New Customer    ${mail}    ${first}    ${last}    ${city}    ${state}    ${gender}
+    END
