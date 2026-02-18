@@ -9,13 +9,14 @@ ${PASSWORD}       ${EMPTY}
 
 *** Keywords ***
 Incognito Mode
-    ${env_path}=    Set Variable    ${CURDIR}/../.env
+    ${env_path}=    Join Path    ${CURDIR}    ..    .env
+    ${env_path}=    Normalize Path    ${env_path}
     Evaluate    __import__('dotenv').load_dotenv(r'${env_path}')
-    
+
     ${URL}=         Get Environment Variable    CRM_APP_URL
     ${EMAIL}=       Get Environment Variable    CRM_LOGIN_EMAIL
     ${PASSWORD}=    Get Environment Variable    CRM_LOGIN_PASSWORD
-    
+
     Set Global Variable    ${URL}
     Set Global Variable    ${EMAIL}
     Set Global Variable    ${PASSWORD}
@@ -28,9 +29,5 @@ Incognito Mode
 
 Login With Credentials
     [Arguments]    ${user_email}    ${user_password}
-    Click Link         ${NAV_SIGN_IN}
-    Wait Until Element Is Visible    ${INPUT_LOGIN_EMAIL}    10s
-    Input Text         ${INPUT_LOGIN_EMAIL}       ${user_email}
-    Input Text         ${INPUT_LOGIN_PASSWORD}    ${user_password}
-    Click Button       ${BTN_LOGIN_SUBMIT}
-    Wait Until Page Contains    ${MSG_DASHBOARD_CHECK}    10s
+    Enter Login Credentials    ${user_email}    ${user_password}
+    Submit Login
