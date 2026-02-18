@@ -28,3 +28,4 @@ Should be able to add new customer from XML
         ${gender}=    Get Element Text    ${user}    Gender
         Add New Customer    ${mail}    ${first}    ${last}    ${city}    ${state}    ${gender}
     END
+    
