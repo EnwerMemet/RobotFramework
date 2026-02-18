@@ -1,2 +1,5 @@
 Run all Tests
 robot -A all_tests.args Tests/
+
+
+find . -name "log.html" -o -name "report.html" -o -name "output.xml" -delete
