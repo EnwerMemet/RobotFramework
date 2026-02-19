@@ -9,4 +9,7 @@ ${URL}            https://automationplayground.com/front-office/
 
 Open Landing Page
     Open Browser    ${URL}    chrome
+    Maximize Browser Window
 
+Close Browser
+    Close All Browsers
