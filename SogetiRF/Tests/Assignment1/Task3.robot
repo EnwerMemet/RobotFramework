@@ -14,6 +14,13 @@ Login to the website
     Close Browser
 
 
+Test title of the page
+    [Documentation]     Assignment 5
+    ${Actual_Title}=   Retrive the title of the page    https://www.saucedemo.com/    chrome    class:login_logo
+    Should Be Equal As Strings    ${Actual_Title}    Swag Labs
+    
+  
+
 Test Currency Conversion
     [Documentation]     Assignment 4
     ${Result}=    Check Currency    USD    EUR    100
@@ -23,13 +30,7 @@ Test Currency Conversion
     ${Result}=    Check Currency    GBP    EUR    100
     Log To Console    Converted amount: ${Result} EUR
 
-
-Test title of the page
-    [Documentation]     Assignment 5
-    ${Actual_Title}=   Retrive the title of the page    https://www.saucedemo.com/    chrome    class:login_logo
-    Should Be Equal As Strings    ${Actual_Title}    Swag Labs
-    
-    
+  
 *** Keywords ***
 Login to Sauce Demo Website
     [Arguments]    ${user_name}    ${password}    
@@ -40,6 +41,12 @@ Login to Sauce Demo Website
     Click Button    ${login_button}
     Log    Successfully logged in as standard_user
 
+Retrive the title of the page
+    [Arguments]     ${URL}        ${Browser}      ${Locator}
+    Open Browser    ${URL}    ${Browser} 
+    ${Title}=  Get Text    ${Locator}
+    Log To Console    message: ${Title}
+    RETURN    ${Title}
 
 Check Currency
     [Arguments]   ${Currency1}    ${Currency2}   ${Amount}
@@ -61,11 +68,6 @@ Check Currency
 
 
 
-Retrive the title of the page
-    [Arguments]     ${URL}        ${Browser}      ${Locator}
-    Open Browser    ${URL}    ${Browser} 
-    ${Title}=  Get Text    ${Locator}
-    Log To Console    message: ${Title}
-    RETURN    ${Title}
+
 
         
