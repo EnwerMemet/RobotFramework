@@ -7,6 +7,6 @@ Resource    ../Resources/Main.robot
 
 *** Test Cases ***
 Login and Add to Cart
-    Open Website    ${URL}
-    Login As standard_user
-    Add to cart
+    Common.Open Website    ${URL}
+    LoginPage.Login As standard_user
+    CartPage.Add to cart

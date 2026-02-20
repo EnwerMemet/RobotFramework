@@ -1,5 +1,6 @@
 Run all Tests
 robot -A all_tests.args Tests/
 
+robot -d Results  SogetiRF/Tests
 
 find . -name "log.html" -o -name "report.html" -o -name "output.xml" -delete

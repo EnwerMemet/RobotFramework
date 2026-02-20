@@ -1,6 +1,6 @@
 *** Settings ***
 Resource          ../Resources/Common.robot
-Library    ../../../../.venv/lib/python3.12/site-packages/robot/libraries/Dialogs.py
+
 
 *** Keywords ***
 Add to cart
@@ -8,5 +8,5 @@ Add to cart
     Page Should Contain    Sauce Labs Bolt T-Shirt
     Page Should Contain    ${Tshirt_Price}
     Click Button    ${add-to-cart}
-    Element Should Be Visible    locator=id=remove
+    Element Should Be Visible    ${remove}
     Log    Successfully added Sauce Labs Bolt T-Shirt to the cart
