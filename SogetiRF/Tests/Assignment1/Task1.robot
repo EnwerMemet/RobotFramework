@@ -1,6 +1,11 @@
 *** Settings ***
+Documentation    Read and validate XML data using the XML library in Robot Framework.
 Library       XML   use_lxml=${True}
 Suite Setup    Read XML
+
+*** Variables ***
+# Reads from root folder
+${XML_PATH}    ${EXECDIR}${/}SogetiRF${/}Resources${/}data.xml
 
 *** Test Cases ***
 Testcase1a Get Parrot with the name Tweety
@@ -22,5 +27,5 @@ Testcase1d Test XML user length
 
 *** Keywords ***
 Read XML
-    ${temp_xml}=    Parse XML    ${CURDIR}/../Resources/data.xml
+    ${temp_xml}=    Parse XML    ${XML_PATH}
     Set Suite Variable    ${xml}    ${temp_xml}
