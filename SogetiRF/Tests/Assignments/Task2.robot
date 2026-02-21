@@ -5,7 +5,8 @@ Library    SeleniumLibrary
 
 *** Test Cases ***
 Add an item to the cart and verify the item price
-    [Documentation]    This test case verifies that the price of an item is displayed correctly on the website.
+    [Documentation]    Assignment 2
+    [Tags]    002    Smoke    Cart
     Open Browser    https://topgeschenken.nl/    chrome
     Click Button    id=CookieConsentIOAccept
     Click Link    id=item-2909
