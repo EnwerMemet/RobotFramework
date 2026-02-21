@@ -1,6 +1,7 @@
 *** Settings ***
 Library           SeleniumLibrary
-Resource          ../Resources/Locators.robot
-Resource          ../Resources/Common.robot
-Resource          ../Resources/LoginPage.robot
-Resource          ../Resources/CartPage.robot
+Resource          Locators.robot
+Resource          Common.robot
+Resource          ./PO/LoginPage.robot
+Resource          ./PO/CartPage.robot
+Resource          ./GherkinSteps/Sauce.robot

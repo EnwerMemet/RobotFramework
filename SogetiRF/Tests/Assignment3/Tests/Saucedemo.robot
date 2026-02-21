@@ -1,4 +1,5 @@
 *** Settings ***
+Documentation    Assignment 3 
 Library    SeleniumLibrary
 Resource    ../Resources/Main.robot
 
@@ -6,7 +7,9 @@ Resource    ../Resources/Main.robot
 
 
 *** Test Cases ***
-Login and Add to Cart
-    Common.Open Website    ${URL}
-    LoginPage.Login As standard_user
-    CartPage.Add to cart
+Scenario: Login and add a product to the shopping cart
+    [Tags]             003    Smoke    Cart
+    Given The user has navigated to the SauceDemo website 
+    When The user logs in as a "standard_user" 
+    And The user adds the bike light to the cart
+    Then The Bike should be added to the Cart

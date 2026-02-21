@@ -1,5 +1,6 @@
 *** Settings ***
 Library           String
+Library           SeleniumLibrary
 Library    ../../../.venv/lib/python3.12/site-packages/SeleniumLibrary/__init__.py
 
 #robot -d Results demo.robot

@@ -1,5 +1,5 @@
 *** Settings ***
-Resource          ../Resources/Main.robot
+Library           SeleniumLibrary
 
 *** Keywords ***
 Open Website

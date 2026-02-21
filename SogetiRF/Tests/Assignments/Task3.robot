@@ -5,6 +5,27 @@ ${L_username}    id=user-name
 ${L_password}     id=password
 ${login_button}    id=login-button
 *** Test Cases ***
+
+
+Homepage title verification
+    [Documentation]     Assignment 5
+    ${Actual_Title}=   Retrive the title of the page    https://www.saucedemo.com/    chrome    class:login_logo
+    Should Be Equal As Strings    ${Actual_Title}    Swag Labs
+    
+  
+Homepage title verification and reload
+    [Documentation]     Assignment 8 for testing conditional statements
+    ${Actual_Title}=   Retrive the title of the page    https://www.saucedemo.com/    chrome    class:login_logo
+    IF    "${Actual_Title}" == "Swag Labs"
+        Reload Page
+        Log To Console    Page reloaded successfully
+    ELSE
+        Open Browser    https://www.saucedemo.com/    chrome
+        Log To Console    Navigated to the Homepage successfully
+    END
+    Should Be Equal As Strings    ${Actual_Title}    Swag Labs
+
+    
 Login to the website
     [Documentation]    This test case verifies that user can login to the website successfully.
     # Skip    Skipping this test because I am debugging another part.
@@ -14,11 +35,6 @@ Login to the website
     Close Browser
 
 
-Test title of the page
-    [Documentation]     Assignment 5
-    ${Actual_Title}=   Retrive the title of the page    https://www.saucedemo.com/    chrome    class:login_logo
-    Should Be Equal As Strings    ${Actual_Title}    Swag Labs
-    
   
 
 Test Currency Conversion
