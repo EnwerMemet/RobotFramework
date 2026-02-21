@@ -29,8 +29,8 @@ Login
     Input Text      ${L_PASSWORD}    secret_sauce 
     Click Button    ${L_LOGIN_BTN}
     Page Should Contain    Sauce Labs Bike Light
-    Location Should Be    ${URL}inventory.html
-    Log To Console    Login Successful.
+    Location Should Be     ${URL}inventory.html
+    Log  To Console        Login Successful.
 
 Test Teardown
     Log To Console    Test Has Ended.

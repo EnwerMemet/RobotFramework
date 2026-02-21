@@ -34,9 +34,6 @@ Login to the website
     Sleep    2s
     Close Browser
 
-
-  
-
 Test Currency Conversion
     [Documentation]     Assignment 4
     ${Result}=    Check Currency    USD    EUR    100
