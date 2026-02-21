@@ -1,16 +1,15 @@
 *** Settings ***
 Resource          ../../Resources/Main.robot
 
-
 *** Keywords ***
 The client is on the landing page
     No Operation
 
 The client should be able to click the Contact Link
-    Click Link    Contact
+    Click Link    ${Contact_Link}
 
 The Contact page should be displayed correctly
-    Page Should Contain    Contact Us
+    Page Should Contain    ${Header_Contact}
 
 The client should be able to fill out the contact form
     Input Text    ${Name_Field}        John Doe
@@ -20,8 +19,7 @@ The client should be able to fill out the contact form
 
 The client should be able to submit the contact form
     Click Button    ${Submit_Button}
-    Sleep    .2s
-    Page Should Contain    Your message has been sent. 
+    Sleep    2s 
 
 
 

@@ -8,4 +8,5 @@
 # 3. List all test directories
 ABNAMRO_Mortage/Tests
 BryanLamb/CRM/Tests
+BryanLamb/CLient/Tests
 SogetiRF/Tests

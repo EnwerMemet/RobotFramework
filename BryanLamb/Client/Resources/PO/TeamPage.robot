@@ -6,9 +6,9 @@ The client is on the landing page
     Log To Console    message: The client is on the landing page
 
 The client should be able to click the Team Link
-    Click Link    Team
+    Click Link    ${Team_Link}
 
 The Team page should be displayed correctly
-    Page Should Contain    Our Amazing Team
+    Page Should Contain    ${Header_Team}
 
 
